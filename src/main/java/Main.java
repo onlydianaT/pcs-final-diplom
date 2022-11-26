@@ -25,7 +25,7 @@ public class Main {
                      //Создаем поток ввода
                      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
                     out.println("Server started");
-                    String word = in.readLine();
+                    String word = in.readLine().toLowerCase();
                     BooleanSearchEngine engine = new BooleanSearchEngine(new File("pdfs"));
                     List<PageEntry> searchList = engine.search(word);
                     if (searchList.get(0).compareTo(searchList.get(0)) > 0) {
