@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -60,14 +61,9 @@ public class Main {
                         object.add(page);
                     }
                     // отвечать на запросы /{word} -> возвращённое значение метода search(word) в JSON-формате
-                    //Записываем ответ в виде json файла
+                    //Записываем ответ в виде json формата
                     String json = new Gson().toJson(object);
-                    File fileOut = new File("reply.json");
-                    try (FileWriter files = new FileWriter(fileOut)) {
-                        files.write(json.toString());
-                        files.flush();
-                        out.println(fileOut);
-                    }
+                    out.println(json);
                 } catch (IOException e) {
                     System.out.println("Не могу стартовать сервер");
                     e.printStackTrace();

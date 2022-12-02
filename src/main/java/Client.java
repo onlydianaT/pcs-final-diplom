@@ -1,15 +1,12 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.net.Socket;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Client {
@@ -31,12 +28,12 @@ public class Client {
             String fileIn = in.readLine();
             JSONParser parser = new JSONParser();
             try {
-                Object object = parser.parse(new FileReader(fileIn));
+                Object object = parser.parse(fileIn);
                 JSONArray jsonObject = (JSONArray) object;
                 String jsonText = JSONValue.toJSONString(object);
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 System.out.println(gson.toJson(object).toString());
-            } catch (IOException | ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
         } catch (IOException e) {
